@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Post, Comment, Like, PostImage
+import os
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -31,13 +32,32 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PostCreateSerializer(serializers.ModelSerializer):
+    image = serializers.ImageField(required=True)
+    
     class Meta:
         model = Post
         fields = ['text', 'image']
+    
+    def validate_image(self, image):
+        # Проверка размера файла - не более 10 МБ
+        if image.size > 10 * 1024 * 1024:
+            raise serializers.ValidationError("Размер изображения не должен превышать 10 МБ")
         
-    def create(self, validated_data):
-        post = Post.objects.create(**validated_data)
-        return post
+        # Проверка типа файла
+        valid_extensions = ['.jpg', '.jpeg', '.png', '.gif']
+        ext = os.path.splitext(image.name)[1].lower()
+        if ext not in valid_extensions:
+            raise serializers.ValidationError(
+                f"Недопустимый формат изображения. Поддерживаемые форматы: {', '.join(valid_extensions)}"
+            )
+        
+        return image
+
+
+class PostUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['text']
 
 
 class LikeSerializer(serializers.ModelSerializer):
