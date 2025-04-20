@@ -3,3 +3,11 @@
 .idea/
 __pycache__/
 media/
+*.py[cod]
+*$py.class
+*.so
+.Python
+db.sqlite3
+.DS_Store
+static/
+.env
