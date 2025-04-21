@@ -130,16 +130,3 @@ curl -X POST http://127.0.0.1:8000/api/posts/ -H "Authorization: Token YOUR_TOKE
 ```bash
 curl -X POST http://127.0.0.1:8000/api/posts/1/comment/ -H "Authorization: Token YOUR_TOKEN" -H "Content-Type: application/json" -d '{"text":"Отличный пост!"}'
 ```
-
-## Дальнейшее развитие проекта
-
-Возможные направления для улучшения проекта:
-- Профили пользователей с аватарами и дополнительной информацией
-- Подписки на других пользователей
-- Хэштеги и поиск по хэштегам
-- Уведомления о новых комментариях и лайках
-- Интеграция с геолокацией для отметки места на фотографиях
-
-## Разработчик
-
-Anton Kondrashov - anton.kondrashov@example.com
