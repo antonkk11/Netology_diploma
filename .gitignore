@@ -11,3 +11,12 @@ db.sqlite3
 .DS_Store
 static/
 .env
+
+# Тестовые файлы
+*_test.jpg
+*_test.png
+test_*.jpg
+test_*.png
+*_test_*.jpg
+*_test_*.png
+*/test_files/
